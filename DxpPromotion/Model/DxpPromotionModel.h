@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class WebFrame;
 @class Title;
 @class ContentStyle;
-@class Message;
+@class PopUpMessage;
 @class Media;
 @class MediaStyle;;
 @class Padding;
@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) AppFrame *appFrame;
 @property (nonatomic, strong) WebFrame *webFrame;
 @property (nonatomic, strong) Title *title;
-@property (nonatomic, strong) Message *message;
+@property (nonatomic, strong) PopUpMessage *message;
 @property (nonatomic, strong) Media *media;
 @property (nonatomic, strong) Button *button;
 @property (nonatomic, strong) Dismissal *dismissal;
@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *position;
 @end
 
-@interface Message : DxpPromotionBaseObject
+@interface PopUpMessage : DxpPromotionBaseObject
 
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, strong) ContentStyle *style;

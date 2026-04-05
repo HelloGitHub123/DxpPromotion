@@ -61,7 +61,7 @@
 @implementation ContentStyle
 @end
 
-@implementation Message
+@implementation PopUpMessage
 @end
 
 @implementation Media
