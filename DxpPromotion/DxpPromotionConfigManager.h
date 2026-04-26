@@ -36,6 +36,7 @@ typedef void(^RequestPromotionDataCompletionBlock)(BOOL success, NSArray<DxpProm
 
 // 显示弹框，3个回调由外界传入并透传
 - (void)showPromotion:(NSString *)pageURL
+          showBlock:(nullable DxpPromotionAlertShowBlock)showBlock
           closeBlock:(nullable DxpPromotionAlertCloseBlock)closeBlock
    primaryButtonBlock:(nullable DxpPromotionAlertButtonBlock)primaryButtonBlock
   secondaryButtonBlock:(nullable DxpPromotionAlertButtonBlock)secondaryButtonBlock;

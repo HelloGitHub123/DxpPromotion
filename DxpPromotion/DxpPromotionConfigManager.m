@@ -101,7 +101,7 @@ static DxpPromotionConfigManager *manager = nil;
 	
 	__weak __typeof(&*self)weakSelf = self;
 	
-	url = @"http://10.10.178.35:11204/mockApi/jGeabfh610ca319b3f3afb04a2f4990247b9e7c78154002/dxp/promotion-management/v1/promotions?responseId=7081";
+//	url = @"http://10.10.178.35:11204/mockApi/jGeabfh610ca319b3f3afb04a2f4990247b9e7c78154002/dxp/promotion-management/v1/promotions?responseId=7081";
 	
 	[[DCNetAPIClient sharedClient] GET:url paramaters:@{} CompleteBlock:^(id res, NSError *error) {
 		NSDictionary *dict = (NSDictionary *)res;
@@ -178,13 +178,14 @@ static DxpPromotionConfigManager *manager = nil;
 }
 
 - (void)showPromotion:(NSString *)pageURL {
-	[self showPromotion:pageURL closeBlock:nil primaryButtonBlock:nil secondaryButtonBlock:nil];
+	[self showPromotion:pageURL showBlock:nil closeBlock:nil primaryButtonBlock:nil secondaryButtonBlock:nil];
 }
 
 - (void)showPromotion:(NSString *)pageURL
-          closeBlock:(DxpPromotionAlertCloseBlock)closeBlock
-   primaryButtonBlock:(DxpPromotionAlertButtonBlock)primaryButtonBlock
-  secondaryButtonBlock:(DxpPromotionAlertButtonBlock)secondaryButtonBlock {
+			showBlock:(nullable DxpPromotionAlertShowBlock)showBlock
+		   closeBlock:(nullable DxpPromotionAlertCloseBlock)closeBlock
+   primaryButtonBlock:(nullable DxpPromotionAlertButtonBlock)primaryButtonBlock
+ secondaryButtonBlock:(nullable DxpPromotionAlertButtonBlock)secondaryButtonBlock {
 	if (isEmptyString(pageURL)) {
 		return;
 	}
@@ -192,6 +193,7 @@ static DxpPromotionConfigManager *manager = nil;
 	
 	DxpPromotionAlertView *alertView = [[DxpPromotionAlertView alloc] initWithFrame:CGRectZero];
 	alertView.promotionInfo = promotionInfo;
+	alertView.showBlock = showBlock;
 	alertView.closeBlock = closeBlock;
 	alertView.primaryButtonBlock = primaryButtonBlock;
 	alertView.secondaryButtonBlock = secondaryButtonBlock;

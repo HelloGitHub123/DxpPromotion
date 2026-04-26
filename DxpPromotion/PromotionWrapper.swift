@@ -39,10 +39,10 @@ import DXPNetWorkingManagerLib
 	///   - primaryButtonBlock: 主按钮点击回调 (action, openType, link)
 	///   - secondaryButtonBlock: 次按钮点击回调 (action, openType, link)
 	@objc public func showPromotion(pageURL: String,
-								   closeBlock: ((String?) -> Void)? = nil,
-								   primaryButtonBlock: ((String?, String?, String?) -> Void)? = nil,
-								   secondaryButtonBlock: ((String?, String?, String?) -> Void)? = nil) {
-		configManager.showPromotion(pageURL, close: closeBlock, primaryButtonBlock: primaryButtonBlock, secondaryButtonBlock: secondaryButtonBlock)
+									showBlock:((Any?) -> Void)? = nil,
+									closeBlock: ((String?) -> Void)? = nil,
+									primaryButtonBlock: ((String?, String?, String?) -> Void)? = nil,
+									secondaryButtonBlock: ((String?, String?, String?) -> Void)? = nil) {
+		configManager.showPromotion(pageURL, show: showBlock, close: closeBlock, primaryButtonBlock: primaryButtonBlock, secondaryButtonBlock: secondaryButtonBlock)
 	}
-	
 }

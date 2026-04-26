@@ -59,7 +59,7 @@ static CGFloat const kButtonContainerPadding = 16.0f;
 - (UIView *)backdropView {
     if (!_backdropView) {
         _backdropView = [[UIView alloc] init];
-        _backdropView.backgroundColor = [UIColor blackColor];
+        _backdropView.backgroundColor = [UIColor whiteColor];
         _backdropView.alpha = kDefaultBackdropAlpha;
         [self addSubview:_backdropView];
         UITapGestureRecognizer *backdropTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backdropTapped)];
@@ -116,7 +116,7 @@ static CGFloat const kButtonContainerPadding = 16.0f;
 - (UIView *)buttonContainerView {
     if (!_buttonContainerView) {
         _buttonContainerView = [[UIView alloc] init];
-        _buttonContainerView.backgroundColor = [UIColor clearColor];
+        _buttonContainerView.backgroundColor = [UIColor whiteColor];
         [self.dialogContainerView addSubview:_buttonContainerView];
     }
     return _buttonContainerView;
@@ -178,6 +178,9 @@ static CGFloat const kButtonContainerPadding = 16.0f;
     Button *buttonConfig = hasButtons ? _promotionInfo.mktCreativeInfo.popup.button : nil;
     BOOL isInline = buttonConfig && [[buttonConfig.arrangement lowercaseString] isEqualToString:@"inline"];
     BOOL hasBoth = buttonConfig && buttonConfig.primaryButton && buttonConfig.secondaryButton && buttonConfig.primaryButton.text.length > 0 && buttonConfig.secondaryButton.text.length > 0;
+	// 设置标题
+	[self.primaryButton setTitle:buttonConfig.primaryButton.text.length == 0 ? @"OK":buttonConfig.primaryButton.text forState:UIControlStateNormal];
+	
     CGFloat buttonContainerHeight;
     if (hasButtons) {
         if (isInline && hasBoth) {
@@ -230,7 +233,7 @@ static CGFloat const kButtonContainerPadding = 16.0f;
     BOOL hasPrimary = buttonConfig.primaryButton && buttonConfig.primaryButton.text.length > 0;
     BOOL hasSecondary = buttonConfig.secondaryButton && buttonConfig.secondaryButton.text.length > 0;
     BOOL fullWidth = [layout isEqualToString:@"fullwidth"];
-    
+
     CGFloat padding = kButtonContainerPadding;
     
     if (isInline && hasPrimary && hasSecondary) {
@@ -395,6 +398,11 @@ static CGFloat const kButtonContainerPadding = 16.0f;
             self.frame = keyWindow.bounds;
             self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             [keyWindow addSubview:self];
+			
+			// 显示回调
+			if (_showBlock) {
+				_showBlock(self);
+			}
         }
     }
     

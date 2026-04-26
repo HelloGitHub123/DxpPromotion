@@ -13,6 +13,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+typedef void(^DxpPromotionAlertShowBlock)(UIView *targetView);
+
 /// 关闭按钮点击回调
 /// @param action promotionInfo.mktCreativeInfo.popup.dismissal.action
 typedef void(^DxpPromotionAlertCloseBlock)(NSString * _Nullable action);
@@ -27,6 +30,8 @@ typedef void(^DxpPromotionAlertButtonBlock)(NSString * _Nullable action, NSStrin
 
 /// 营销推广数据，包含弹框样式、内容、按钮等配置
 @property (nonatomic, strong) DxpPromotionInfo *promotionInfo;
+
+@property (nonatomic, copy, nullable) DxpPromotionAlertShowBlock showBlock;
 
 /// 关闭按钮（×）点击回调
 @property (nonatomic, copy, nullable) DxpPromotionAlertCloseBlock closeBlock;
